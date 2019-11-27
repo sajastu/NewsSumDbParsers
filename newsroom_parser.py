@@ -1,14 +1,29 @@
 import json
 import sys
-import spacy
+from tqdm import tqdm
+import subprocess
 
+import spacy
+spacy.prefer_gpu()
 nlp = spacy.load("en_core_web_sm")
+
+
+def file_len(fname):
+    p = subprocess.Popen(['wc', '-l', fname], stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE)
+    result, err = p.communicate()
+    if p.returncode != 0:
+        raise IOError(err)
+    return int(result.strip().split()[0])
 
 def read_news(newsroom_dir, set):
     out = []
     instance = {}
-    with open(newsroom_dir + set + '.jsonl', mode='r') as file:
-        for line in file:
+
+    total_cnt = file_len(newsroom_dir + '/' + set + '.jsonl')
+
+    with open(newsroom_dir + '/' + set + '.jsonl', mode='r') as file:
+        for line in tqdm(file, total=total_cnt):
             news = json.loads(line)
             instance['text'] = news['text']
             instance['summary'] = news['summary']
@@ -18,14 +33,16 @@ def read_news(newsroom_dir, set):
 
 
 def preprocess_tokenize(collection):
+
     out = []
     tmp = {}
-    for instance in collection:
+
+    for instance in tqdm(collection, total=len(collection)):
         src = instance['text'].replace('\n', ' ').replace('\r', ' ')
         tgt = instance['summary'].replace('\n', ' ').replace('\r', ' ')
 
-        doc_src = nlp(src, disable=['parser'])
-        doc_tgt = nlp(tgt, disable=['parser'])
+        doc_src = nlp(src, disable=['parser', 'tagger'])
+        doc_tgt = nlp(tgt, disable=['parser', 'tagger'])
         src_arr = []
         tgt_arr = []
         for token_s in doc_src:
@@ -56,19 +73,21 @@ if __name__ == '__main__':
         print("USAGE: python newsroom_parser.py <newsroom root dir>")
         sys.exit()
     newsroom_dir = sys.argv[1]
-    br = 0
 
     # Reading news from json file into lists
+    print('Reading files...\n')
     train = read_news(newsroom_dir, 'train')
     dev = read_news(newsroom_dir, 'dev')
     test = read_news(newsroom_dir, 'test')
 
     # Doing some sort of pre-processing to remove unnecessary symbols, and then tokenizing...
+    print('Preprocessing and then tokenizing...\n')
     train = preprocess_tokenize(train)
     dev = preprocess_tokenize(dev)
     test = preprocess_tokenize(test)
 
     # Dumping news to jsonl files...
+    print('Dumping content to jsonl...\n')
     write_jsonl(train, 'train')
     write_jsonl(dev, 'dev')
     write_jsonl(test, 'test')
