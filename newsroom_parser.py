@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from tqdm import tqdm
 import subprocess
@@ -36,7 +37,6 @@ def preprocess_tokenize(collection):
 
     out = []
     tmp = {}
-
     for instance in tqdm(collection, total=len(collection)):
         src = instance['text'].replace('\n', ' ').replace('\r', ' ')
         tgt = instance['summary'].replace('\n', ' ').replace('\r', ' ')
@@ -54,18 +54,23 @@ def preprocess_tokenize(collection):
 
         tmp['text'] = src_arr.copy()
         tmp['summary'] = tgt_arr.copy()
-
-        out.append(tmp)
+        src_arr.clear()
+        tgt_arr.clear()
+        out.append(tmp.copy())
 
     return out
 
 
 def write_jsonl(collection, set_name):
-    out_file = open('./' + newsroom_dir + 'tokenized/' + set_name + '.jsonl', mode='a')
+
+    if not os.path.exists(newsroom_dir + '/tokenized/'):
+        os.mkdir(newsroom_dir + '/tokenized/')
+
+    out_file = open(newsroom_dir + '/tokenized/' + set_name + '.jsonl', mode='a')
 
     for instance in collection:
         json.dump(instance, out_file)
-        json.dump('\n')
+        out_file.write('\n')
 
 
 if __name__ == '__main__':
@@ -75,24 +80,21 @@ if __name__ == '__main__':
     newsroom_dir = sys.argv[1]
 
     # Reading news from json file into lists
-    print('Reading files...\n')
+    print('Reading files...')
     train = read_news(newsroom_dir, 'train')
     dev = read_news(newsroom_dir, 'dev')
     test = read_news(newsroom_dir, 'test')
 
     # Doing some sort of pre-processing to remove unnecessary symbols, and then tokenizing...
-    print('Preprocessing and then tokenizing...\n')
+    print('Preprocessing and then tokenizing...')
     train = preprocess_tokenize(train)
     dev = preprocess_tokenize(dev)
     test = preprocess_tokenize(test)
 
     # Dumping news to jsonl files...
-    print('Dumping content to jsonl...\n')
+    print('Dumping content to jsonl...')
     write_jsonl(train, 'train')
     write_jsonl(dev, 'dev')
     write_jsonl(test, 'test')
 
-
-    with open(newsroom_dir, mode='r') as nr:
-        for line in nr:
-            news = json.loads(line)
+    print('Done!!')
