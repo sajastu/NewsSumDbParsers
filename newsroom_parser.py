@@ -12,7 +12,6 @@ def read_news(newsroom_dir, set):
             news = json.loads(line)
             instance['text'] = news['text']
             instance['summary'] = news['summary']
-            import pdb;pdb.set_trace()
             out.append(instance.copy())
             instance.clear()
     return out
@@ -30,9 +29,11 @@ def preprocess_tokenize(collection):
         src_arr = []
         tgt_arr = []
         for token_s in doc_src:
-            src_arr.append(token_s.text)
+            if len(token_s.text.strip()) > 0:
+                src_arr.append(token_s.text)
         for token_tgt in doc_tgt:
-            src_arr.append(token_tgt.text)
+            if len(token_tgt.text.strip()) > 0:
+                tgt_arr.append(token_tgt.text)
 
         tmp['text'] = src_arr.copy()
         tmp['summary'] = tgt_arr.copy()
