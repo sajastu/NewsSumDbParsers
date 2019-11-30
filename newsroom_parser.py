@@ -43,16 +43,19 @@ def preprocess_tokenize(collection, db_dir):
         src = instance['text'].replace('\n', ' ').replace('\r', ' ')
         tgt = instance['summary'].replace('\n', ' ').replace('\r', ' ')
 
-        doc_src = CachedNlp(db_dir).tokenize(src, ['parser', 'tagger'])
-        doc_tgt = CachedNlp(db_dir).tokenize(tgt, ['parser', 'tagger'])
+        # doc_src = CachedNlp(db_dir).tokenize(src, ['parser', 'tagger'])
+        # doc_tgt = CachedNlp(db_dir).tokenize(tgt, ['parser', 'tagger'])
+        doc_src = nlp(src, disable=['parser', 'tagger'])
+        doc_tgt = nlp(tgt, disable=['parser', 'tagger'])
+
         src_arr = []
         tgt_arr = []
         for token_s in doc_src:
-            if len(token_s.strip()) > 0:
-                src_arr.append(token_s)
+            if len(token_s.text.strip()) > 0:
+                src_arr.append(token_s.text)
         for token_tgt in doc_tgt:
-            if len(token_tgt.strip()) > 0:
-                tgt_arr.append(token_tgt)
+            if len(token_tgt.text.strip()) > 0:
+                tgt_arr.append(token_tgt.text)
 
         tmp['text'] = src_arr.copy()
         tmp['summary'] = tgt_arr.copy()
