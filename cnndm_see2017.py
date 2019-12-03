@@ -129,6 +129,7 @@ def write_jsonl(data_arr, set_name):
         json.dump(instance, out_file)
         out_file.write('\n')
 
+# Sample command: python cnndm_see2017.py /disk1/sajad/datasets/cnndm/cnn_stories_tokenized/ /disk1/sajad/datasets/cnndm/dm_stories_tokenized/ &> c.l &
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print("USAGE: python cnndm_see2017.py <cnn_stories_dir> <dailymail_stories_dir>")
@@ -149,5 +150,5 @@ if __name__ == '__main__':
     dev_data.clear()
 
     test_data = preprocess_tokenize(test_fnames, cnn_stories_dir, dm_stories_dir)
-    write_jsonl(test_fnames, 'test')
+    write_jsonl(test_data, 'test')
     test_data.clear()

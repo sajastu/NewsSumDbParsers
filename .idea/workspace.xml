@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc41955e-0886-454f-8606-46a9a33ce529" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnndm_see2017.py" beforeDir="false" afterPath="$PROJECT_DIR$/cnndm_see2017.py" afterDir="false" />
-    </list>
+    <list default="true" id="cc41955e-0886-454f-8606-46a9a33ce529" name="Default Changelist" comment="" />
     <ignored path="cnndm_see2017.py" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cnndm_see2017.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="122" column="64" selection-start-line="122" selection-start-column="64" selection-end-line="122" selection-end-column="64" />
+            <state relative-caret-position="349">
+              <caret line="131" column="151" lean-forward="true" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="151" />
               <folding>
                 <element signature="e#72#86#0" expanded="true" />
               </folding>
@@ -75,7 +72,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1002" />
@@ -193,14 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575086613991</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Quick updated cnndm.">
+      <created>1575327740838</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575327740838</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="822" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3505007" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26464325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -212,7 +216,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.32876712" />
+      <window_info active="true" anchor="bottom" id="File Transfer" order="9" visible="true" weight="0.08681319" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.0" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
@@ -237,7 +241,8 @@
     <MESSAGE value="Newsroom parser; fixed minor bugs." />
     <MESSAGE value="Cached parser for newsroom" />
     <MESSAGE value="updated cnndm." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated cnndm." />
+    <MESSAGE value="Quick updated cnndm." />
+    <option name="LAST_COMMIT_MESSAGE" value="Quick updated cnndm." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pubmed_cohan.py" />
@@ -253,8 +258,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cnndm_see2017.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="122" column="64" selection-start-line="122" selection-start-column="64" selection-end-line="122" selection-end-column="64" />
+        <state relative-caret-position="349">
+          <caret line="131" column="151" lean-forward="true" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="151" />
           <folding>
             <element signature="e#72#86#0" expanded="true" />
           </folding>
