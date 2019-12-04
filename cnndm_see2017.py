@@ -1,4 +1,4 @@
-""" This code is partially uses functions implemented by See et al."""
+""" This code partially uses functions implemented by See et al. You can check it out from Github repo."""
 
 import hashlib
 import json
@@ -137,17 +137,17 @@ if __name__ == '__main__':
     cnn_stories_dir = sys.argv[1]
     dm_stories_dir = sys.argv[2]
 
-    train_fnames = get_url_hashes(read_txt_file(all_train_urls))
-    dev_fnames = get_url_hashes(read_txt_file(all_val_urls))
+    # train_fnames = get_url_hashes(read_txt_file(all_train_urls))
+    # dev_fnames = get_url_hashes(read_txt_file(all_val_urls))
     test_fnames = get_url_hashes(read_txt_file(all_test_urls))
 
-    train_data = preprocess_tokenize(train_fnames, cnn_stories_dir, dm_stories_dir)
-    write_jsonl(train_data, 'train')
-    train_data.clear()
-
-    dev_data = preprocess_tokenize(dev_fnames, cnn_stories_dir, dm_stories_dir)
-    write_jsonl(dev_data, 'dev')
-    dev_data.clear()
+    # train_data = preprocess_tokenize(train_fnames, cnn_stories_dir, dm_stories_dir)
+    # write_jsonl(train_data, 'train')
+    # train_data.clear()
+    #
+    # dev_data = preprocess_tokenize(dev_fnames, cnn_stories_dir, dm_stories_dir)
+    # write_jsonl(dev_data, 'dev')
+    # dev_data.clear()
 
     test_data = preprocess_tokenize(test_fnames, cnn_stories_dir, dm_stories_dir)
     write_jsonl(test_data, 'test')
